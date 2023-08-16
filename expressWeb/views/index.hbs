@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Weather App</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+
+<body>
+
+    {{!-- Inline Css --}}
+    <style>
+        .nav {
+            background-color: #800080;
+            font-size: 1.8rem;
+            height: 4rem;
+
+        }
+
+        .nav-item {
+            text-decoration: none;
+            margin-left: 4.5rem;
+            color: #fff;
+            font-weight: bolder;
+            line-height: 60px;
+
+        }
+
+        body {
+            margin: 0px;
+        }
+
+        .fa-snowflake{
+            transition: all linear;
+            animation: rot 7s linear infinite;
+        }
+        @keyframes rot{
+            0%{
+                transform: rotate(0deg);
+            }
+            50%{
+                transform: rotate(180deg);
+            }
+            750%{
+                transform: rotate(0deg);
+            }
+            100%{
+                transform: rotate(-90deg);
+            }
+        }
+
+        h1{
+            text-align: center;
+            font-size:3rem;
+        }
+        h2{
+            text-align: center;
+            font-size:2rem;
+        }
+    </style>
+
+    {{!-- Navbar --}}
+    <div class="nav">
+        <nav class="navbar navbar-expand-lg ">
+            <a class="navbar-brand" href="#"
+                style="text-decoration: none; color:#fff; font-weight:bolder; margin-right:35rem; margin-left:3rem">
+                <i class="fa-regular fa-snowflake "></i><span> Weather App </span><i class=" fa-regular fa-snowflake"></i> </a>
+            {{!-- <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button> --}}
+            {{!-- <div class="collapse navbar-collapse" id="navbarNavAltMarkup"> --}}
+                {{!-- <div class="navbar-nav"> --}}
+                    <a class="nav-item nav-link active" href="/">Home <span class="sr-only"></span></a>
+                    <a class="nav-item nav-link" href="/weather">Weather</a>
+                    <a class="nav-item nav-link" href="/about" style="margin-right: 1rem;">About</a>
+        </nav>
+                </div>
+
+        {{!-- Description --}}
+  <h1>It is the home page of  Weather Forecast App.</h1>
+  <h2>In this you can check the weather condition of any city in India.</h2>
+  
+        </div>
+</div>
+
+<footer style="margin-top: 22.5rem; text-align:center; font-size:2rem; background-color:#800080; color:#fff">Created by Harshit</footer>
+</body>
+</html>

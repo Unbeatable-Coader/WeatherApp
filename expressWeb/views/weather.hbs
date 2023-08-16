@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+        integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    {{!-- CSS --}}
+    <style>
+        .weath{
+            margin-top: -5rem;
+            height: 4rem;
+            line-height: 4rem;
+            {{!-- margin-left: 50%; --}}
+        
+        }
+        form{
+            text-align: center;
+            margin-right: 2rem;
+            margin-top: 10rem;
+        }
+        body{
+            background-color: hsl(324, 4%, 26%);
+            margin: 0;
+        }
+        button{
+            background-color: hsl(212, 63%, 80%);
+            color:hsl(319, 9%, 36%);
+            font-weight:bold;
+            height: 3rem;
+            width: 5.3rem;
+    
+        }
+        .box{
+            background-color: hsl(313, 7%, 76%);
+            height: 20rem;
+            width:23rem;
+            {{!-- justify-content: center; --}}
+        }
+    </style>
+    <span>
+    <h1 style="color: #fff; text-align:center;font-size:4rem; background-color:hsl(330, 2%, 18%); margin-top:-0.7rem">Check Weather condition.</h1>
+    </span>
+    <div class="weath">
+    <nav class="navbar navbar-dark bg-dark justify-content-between">
+  <form class="form-inline">
+    <input id="city_name" class="form-control " type="search" placeholder="Enter City name" aria-label="Search-hidden" style="background-color: hsl(313, 7%, 76%); height:3rem; width:16rem;">
+    <button id="btn2" class="btn btn-outline-success my-2 " type="submit" >Search</button>
+  </form>
+</nav>
+    </div>
+    <div class="box" style="margin: auto; display:flexbox">
+        <div>
+        <p id="txt"style="font-size:medium; opacity: 0.7; margin-left:6rem; margin-top:0rem">Get Output Here</p>
+    </div>
+    <div class="middle_layer data_hide">
+        <p id="temp" style="line-height:10rem; font-size:2rem; margin-left:7rem" class="data_hide">0 <sup>o</sup>C</p>
+        <p id="temp_status" style="margin:-7.9rem 4rem; font-size:2rem"><i class="fa-solid fa-cloud"></i></p>
+    </div>
+    </div>
+    
+<script>
+    const butn = document.getElementById('btn2');
+    const txt = document.getElementById('txt');
+    const city_name = document.getElementById('city_name');
+    const temp = document.getElementById('temp');
+    const temp_status = document.getElementById('temp_status');
+    const datahide = document.querySelector('.middle_layer');
+
+const getInfo = async(event) => {
+    event.preventDefault();
+    let cityval = city_name.value;
+if(cityval === ""){
+    txt.innerText = `write the name before search`;
+    datahide.classList.add('data_hide');
+}
+else{
+    try{
+    let url=`https://api.openweathermap.org/data/2.5/weather?q=${cityval}&units=metric&appid=6981766810e8fdd6e14f80ba2cbf4861`;
+    const response = await fetch(url);
+    const data = await response.json();
+    const arrData = [data];
+
+    txt.innerText = `${arrData[0].name}, ${arrData[0].sys.country}`;
+    temp.innerText = arrData[0].main.temp;
+
+    const tempStatus = arrData[0].weather[0].main;
+     if(tempStatus == 'Sunny'){
+   weathercon.innerHTML = "<i class = 'fas  fa-sun' style='color: #eccc68;'></i>";
+ }
+ else if(tempStatus == 'clouds'){
+     weathercon.innerHTML = "<i class = 'fas  fa-cloud' style='color: #f1f2f6;'></i>";
+ }
+ else if(tempStatus == 'rainy'){
+     weathercon.innerHTML = "<i class = 'fas  fa-cloud-rain' style='color: #a4b0be;'></i>";
+ }
+ else{
+     weathercon.innerHTML = "<i class = 'fas  fa-cloud' style='color: #f1f2f6;'></i>";
+ }
+
+    datahide.classList.remove('data_hide');
+    }
+    catch{
+        txt.innerText = `plz enter the city name properly`;
+        datahide.classList.add('data_hide');
+    }
+}
+}
+
+butn.addEventListener('click',getInfo);
+</script>
+</body>
+</html>
